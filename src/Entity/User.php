@@ -158,4 +158,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->plainPassword = $plainPassword;
     }
 
+    public function getAvatarUri(int $size = 32): string
+    {
+        // https://ui-avatars.com/api/?name={{ app.user.firstname|url_encode }}&size=32&background=random
+
+//        return "https://ui-avatars.com/api/?name={$this->firstname}&size=$size&background=random";
+        return 'https://ui-avatars.com/api/?' . http_build_query([
+            'name' => $this->getDisplayName(),
+                'size' => $size,
+                'background' => 'random'
+            ]);
+
+    }
+
+    public function getDisplayName()
+    {
+        return $this->getFirstname() ?: $this->getEmail();
+    }
 }
