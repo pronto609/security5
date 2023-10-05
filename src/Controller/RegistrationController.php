@@ -47,14 +47,14 @@ class RegistrationController extends AbstractController
             );
 
             // TODO in a real app, send this as an email
-            $this->addFlash('success', 'Confirm your email at: '.$signatureComponents);
+            $this->addFlash('success', 'Confirm your email at: '.$signatureComponents->getSignedUrl());
 
 //            return $userAuthenticator->authenticateUser(
 //                $user,
 //                $formLoginAuthenticator,
 //                $request
 //            );
-            return $this->redirect('app_homepage');
+            return $this->redirectToRoute('app_homepage');
         }
 
         return $this->render('registration/register.html.twig', [
