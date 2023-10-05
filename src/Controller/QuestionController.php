@@ -55,6 +55,7 @@ class QuestionController extends AbstractController
 //        if (!$this->isGranted('ROLE_ADMIN')) {
 //            throw $this->createAccessDeniedException('No access for you!');
 //        }
+//        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return new Response('Sounds like a GREAT feature for V2!');
     }
 
